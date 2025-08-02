@@ -1,6 +1,15 @@
 import java.util.Scanner;
 
 public class Marks {
+
+public static String getGrade(int score){
+ if (score >= 90) return "Grade A";
+ else if (score >= 80) return "Grade B";
+ else if (score >= 70) return "Grade C";
+ else if (score >= 60) return "Grade D";
+ else return "Fall";
+}
+
 public static void main(String[] args) {
   Scanner sc = new Scanner(System.in);
 
@@ -15,7 +24,8 @@ public static void main(String[] args) {
  System.out.println("3. Get the average for a subject: average_s [subjectID]");
  System.out.println("4. Get the average for a student: average [studentID]");
  System.out.println("5. Get the total mark of a student: total [studentID]");
- System.out.println("6. Exit: 6 ");
+ System.out.println("6. Show grades of all student: grades");
+ System.out.println("7. Exit: 7 ");
 
  sc.nextLine();
 
@@ -82,7 +92,16 @@ public static void main(String[] args) {
         int total = marks[id][1] + marks[id][2] + marks[id][3];
      System.out.println("Total mark for student " + id + ": " + total);
 
-      } else if (parts[0].equals("6")) {
+     }else if (parts[0].equalsIgnoreCase("grades")) {
+        System.out.printf("%-10s %-10s %-10s %-10s\n", "Student", "Math", "Chemistry", "Physics");
+        for (int i = 1; i <= n; i++) {
+            String g1 = getGrade(marks[i][1]);
+            String g2 = getGrade(marks[i][2]);
+            String g3 = getGrade(marks[i][3]);
+            System.out.printf("%-10d %-10s %-10s %-10s\n", i, g1, g2, g3);
+        }
+
+      } else if (parts[0].equals("7")) {
                 System.out.println("Exit ");
                 break;
 
